@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ranking Quiz</title>
+  <style>
+    body {
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 10%;
+      display: none;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      font-size: 1.2em;
+      margin: 5px 0;
+    }
+    button {
+      margin-top: 20px;
+      padding: 8px 16px;
+      background-color: #ff4757;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Top 10 Jogadores - Quiz</h1>
+  <ul id="rankingList"></ul>
+  <button onclick="closeRanking()">Fechar</button>
+
+  <script>
+    window.addEventListener('message', (event) => {
+      if (event.data.action === 'show') {
+        const list = document.getElementById("rankingList");
+        list.innerHTML = "";
+        event.data.data.forEach((entry, index) => {
+          const li = document.createElement("li");
+          li.textContent = `${index + 1}. ${entry.name || "Sem Nome"} - ${entry.points} pontos`;
+          list.appendChild(li);
+        });
+        document.body.style.display = "block";
+      } else if (event.data.action === 'hide') {
+        document.body.style.display = "none";
+      }
+    });
+
+    function closeRanking() {
+      fetch(`https://${GetParentResourceName()}/close`, {
+        method: "POST",
+        body: "{}"
+      });
+    }
+  </script>
+</body>
+</html>
