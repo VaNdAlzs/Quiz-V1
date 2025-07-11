@@ -14,7 +14,7 @@ Este script de Quiz para FiveM permite que os jogadores respondam a perguntas pe
 - Suporte para frameworks ESX e QBCore.
 - Notificações via OkOkNotify ou chat padrão.
 - Logs das respostas no Discord através de webhook.
-- Reset semanal do ranking com prémio configurável para o jogador nº1.
+- Reset semanal do ranking 
 
 ---
 
